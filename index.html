@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>CYPRI Score Calculator</title>
 <style>
 body {
@@ -9,6 +13,7 @@ body {
     margin: 40px;
     max-width: 900px;
 }
+/* your CSS unchanged */
 h1 { color: #2c3e50; }
 .criterion-box {
     border: 2px solid #2c3e50;
@@ -57,10 +62,16 @@ button {
     font-size: 22px;
     font-weight: bold;
 }
+#interpretation {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 </style>
 </head>
 <body>
-
+<!-- your full content unchanged -->
 <h1>CYPRI Score Calculator</h1>
 
 <form id="cypri-form">
@@ -122,6 +133,7 @@ ADRs not linked to CYP2C19/CYP2D6 metabolism variability (concentration-dependen
 </form>
 
 <h2 id="result"></h2>
+<div id="interpretation"></div>
 
 <h3>References:</h3>
 <ol>
@@ -143,7 +155,17 @@ function calculateScore() {
     score += document.querySelector('input[name="treatment_resistance"]').checked ? 1 : 0;
     score += parseInt(document.querySelector('input[name="tdm"]:checked').value);
     score += document.querySelector('input[name="adr"]').checked ? 3 : 0;
+
     document.getElementById("result").innerText = "Total CYPRI Score: " + score;
+
+    let interpretation = "";
+    if (score >= 4) {
+        interpretation = "<span style='color: red; font-weight: bold;'>Patient is highly likely to benefit from pharmacogenetic testing. Testing is recommended.</span>";
+    } else if (score <= 3) {
+        interpretation = "<span style='color: red; font-weight: bold;'>Patient is unlikely to benefit from pharmacogenetic testing based on clinical criteria. Testing is not routinely recommended.</span>";
+    }
+
+    document.getElementById("interpretation").innerHTML = interpretation;
 }
 </script>
 
