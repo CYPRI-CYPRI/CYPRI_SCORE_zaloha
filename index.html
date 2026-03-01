@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<title>CYPRI Score Calculator</title>
+<title>CYPRI Skórovací Kalkulátor</title>
 <style>
 body {
     font-family: Arial, sans-serif;
     margin: 40px;
     max-width: 900px;
 }
-/* your CSS unchanged */
 h1 { color: #2c3e50; }
 .criterion-box {
     border: 2px solid #2c3e50;
@@ -71,81 +66,80 @@ button {
 </style>
 </head>
 <body>
-<!-- your full content unchanged -->
-<h1>CYPRI Score Calculator</h1>
+
+<h1>CYPRI Skórovací Kalkulačka</h1>
 
 <form id="cypri-form">
 
 <div class="criterion-box">
-<label><input type="checkbox" name="psychiatric_med"> The use of psychiatric medication (1 point)</label>
+<label><input type="checkbox" name="psychiatric_med"> Užívání psychofarmak s vysokým rizikem variability metabolismu CYP2D6/CYP2C19 (1 bod)</label>
 <div class="details">
-Psychiatric drugs are classified as CYP2D6/CYP2C19 substrates according to the Hiemke 2018 Consensus Guidelines for Therapeutic Drug Monitoring in Psychiatry, Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines for PGx-based drug metabolism impact [1,2,3,4,5].<br><br>Examples:<br>atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
+Psychofarmaka klasifikovaná jako substráty CYP2D6/CYP2C19 dle Hiemke 2018 Consensus Guidelines for TDM, Flockhart Table, PharmGKB, CPIC a DPWG [1,2,3,4,5].<br><br>Příklady:<br><br>atomoxetin, modafinil, amitriptylin, nortriptylin, paroxetin, citalopram, escitalopram, fluoxetin, aripiprazol, risperidon, diazepam, venlafaxin.
 </div>
 </div>
 
 <div class="criterion-box">
-<label><input type="checkbox" name="somatic_med"> The use of somatic medication (1 point)</label>
+<label><input type="checkbox" name="somatic_med"> Užívání somatické medikace s vysokým rizikem variability metabolismu CYP2D6/CYP2C19 (1 bod)</label>
 <div class="details">
-Non-psychiatric drugs that are also substrates for CYP2D6 and CYP2C19 according to the Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines [2,3,4,5].<br><br>Examples:<br>clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoclopramide, voriconazole, metoprolol, propafenone.
+Somatická léčiva, která jsou také substráty CYP2D6 a CYP2C19 dle Flockhart Table, PharmGKB, CPIC a DPWG [2,3,4,5].<br><br>Příklady:<br><br>klopidogrel, kodein, tramadol, omeprazol, pantoprazol, ondansetron, metoklopramid, vorikonazol, metoprolol, propafenon.
 </div>
 </div>
 
 <div class="criterion-box">
-<label><input type="checkbox" name="treatment_resistance"> Treatment-resistant condition (1 point)</label>
+<label><input type="checkbox" name="treatment_resistance"> Farmakorezistence (1 bod)</label>
 <div class="details">
-Defined as the failure of two or more adequate medication trials despite verified adherence and appropriate dosing [6].
+Selhání dvou a více adekvátních pokusů o terapii při ověřené adherenci a při podávání dostatečných dávek po dostatečně dlouhou dobu [6].
 </div>
 </div>
 
 <fieldset>
-<div class="legend-title">Drug plasma levels (choose one)</div>
+<div class="legend-title">Plazmatické hladiny léčiv (zvolte jednu možnost)</div>
 
-<label><input type="radio" name="tdm" value="3"> Drug plasma levels do not correlate with the administered dose (3 points)</label>
+<label><input type="radio" name="tdm" value="3"> Výsledná plazmatická hladina je mimo referenční rozmezí (3 body)</label>
 <div class="details">
-Based on therapeutic drug monitoring (TDM) results [1], defined as:<br>
-- High dose with subtherapeutic drug levels (suggesting ultra-/rapid metabolism), OR<br>
-- Low dose with supratherapeutic/toxic drug levels (suggesting intermediate/poor metabolism).
+Posuzujeme laboratorní výsledek TDM, tedy zda se hodnota koncentrace pohybuje v rámci referenčního rozmezí pro dané léčivo dle Hiemke 2018 [1].
 </div>
 
-<label><input type="radio" name="tdm" value="1"> Plasma drug concentration falls outside the established minimum-maximum range (1 point)</label>
+<label><input type="radio" name="tdm" value="1"> Plazmatická hladina léčiva je v rámci doporučeného rozmezí, nicméně vypočítané hodnoty DCR nebo MR jsou mimo doporučená rozmezí dle Hiemke [1]. (1 bod)</label>
 <div class="details">
-- Plasma drug concentration falls outside the established minimum-maximum range (C/Dlow and C/Dhigh) for the specific drug according to Hiemke 2018 [1], OR<br>
-- Altered parent drug/metabolite ratio, indicating non-normal CYP2D6/CYP2C19 metabolism (e.g., venlafaxine, risperidone, aripiprazole).
+Dose related concentration (DCR) mimo doporučené rozmezí: odhad plazmatické koncentrace na základě dávky léčiva, vypočtená hodnota DCR spadá mimo rozmezí C/Dlow - C/Dmax dle Hiemke [1].
+Abnormální poměr metabolit/léčivo (MR): u léčiv, u kterých známe plazmatickou hladinu metabolitu lze vypočítát MR, hodnota MR spadá mimo doporučené rozmezí dle Hiemke [1].  
 </div>
 
-<label><input type="radio" name="tdm" value="0" checked> None</label>
+<label><input type="radio" name="tdm" value="0" checked> Žádné / nemám k dispozici </label>
 </fieldset>
 
 <div class="criterion-box">
-<label><input type="checkbox" name="adr"> Clinically significant adverse drug reactions (3 points)</label>
+<label><input type="checkbox" name="adr"> Klinicky závažné nežádoucí účinky (NÚ) (3 body)</label>
 <div class="details">
-Based solely on clinical observation and pharmacological history, the following criteria are the results of an ADR:<br>
-- Requiring dose adjustment,<br>
-- Increased monitoring,<br>
-- Drug discontinuation due to intolerance or toxicity,<br>
-- Hospitalization due to ADR,<br>
-- Patient is unable to tolerate the drug despite standard dosing (reliable information from pharmacologic history, e.g. medical opinion).<br><br>
-ADRs not linked to CYP2C19/CYP2D6 metabolism variability (concentration-dependent ADRs), such as allergic or immunologically mediated reactions and weight gain, are excluded [1,7,8].
+Na základě farmakologické anamnézy a klinického pozorování:<br><br>- nutnost snížení dávky<br><br>- přerušení terapie pro špatnou toleranci<br><br>- hospitalizace v důsledku NÚ<br><br>- intolerance při standardním dávkování<br><br>Nezahrnuje NÚ nezávislé na koncentraci (např. alergické a imunologické reakce ani přírůstek hmotnosti) [7,8]. 
 </div>
 </div>
 
-<button type="button" onclick="calculateScore()">Calculate Score</button>
+<button type="button" onclick="calculateScore()">Spočítat skóre</button>
 </form>
 
 <h2 id="result"></h2>
 <div id="interpretation"></div>
 
-<h3>References:</h3>
+<h3>Reference:</h3>
 <ol>
-<li>Hiemke, C. et al. (2018). Consensus guidelines for therapeutic drug monitoring in neuropsychopharmacology: Update 2017. Pharmacopsychiatry.</li>
-<li>Indiana University Drug Interactions Table.</li>
-<li>PharmGKB Database.</li>
-<li>CPIC Guidelines.</li>
-<li>DPWG Guidelines.</li>
-<li>Howes O. et al., Treatment resistance in psychiatry, Molecular Psychiatry, 2022.</li>
-<li>Lingjaerde, O. et al., UKU-SERS-Pat (2001).</li>
-<li>Dreher, J. et al., ADR scale (1999).</li>
+  <li>Hiemke C et al. Consensus Guidelines for Therapeutic Drug Monitoring in Neuropsychopharmacology: Update 2017. Pharmacopsychiatry. 2018;51(1–2):9–62</li>
+  <li>Indiana University. Drug Interactions. https://drug-interactions.medicine.iu.edu</li>
+  <li>PharmGKB. The Pharmacogenomics Knowledge Base. https://www.pharmgkb.org</li>
+  <li>CPIC. Clinical Pharmacogenetics Guidelines. https://cpicpgx.org</li>
+  <li>Jameson A et al. J Pers Med. 2024;14(10):1032.</li>
+  <li>Howes OD et al. Mol Psychiatry. 2022;27(1):58–72.</li>
+  <li>Lingjaerde, O. et al., UKU (2001).</li>
+  <li>Dreher, J. et al., ADR scale (1999).</li>
 </ol>
+
+<br>
+
+<p><strong>© 2024–2025 Psychiatrická nemocnice Bohnice, Oddělení klinické farmacie & Výzkumný tým CYPRI.</strong><br>
+CYPRI skóre a webová kalkulačka jsou určeny výhradně pro nekomerční účely (klinické, výzkumné a vzdělávací). Sdílení pro nekomerční účely je povoleno, úpravy a komerční využití nikoliv.</p>
+
+
 
 <script>
 function calculateScore() {
@@ -156,13 +150,13 @@ function calculateScore() {
     score += parseInt(document.querySelector('input[name="tdm"]:checked').value);
     score += document.querySelector('input[name="adr"]').checked ? 3 : 0;
 
-    document.getElementById("result").innerText = "Total CYPRI Score: " + score;
+    document.getElementById("result").innerText = "Celkové CYPRI skóre: " + score;
 
     let interpretation = "";
     if (score >= 4) {
-        interpretation = "<span style='color: red; font-weight: bold;'>Patient is highly likely to benefit from pharmacogenetic testing. Testing is recommended.</span>";
+        interpretation = "<span style='color: red; font-weight: bold;'>Pacient(ka) má vysokou pravděpodobnost přínosu farmakogenetického testování. Testování je doporučeno.</span>";
     } else if (score <= 3) {
-        interpretation = "<span style='color: red; font-weight: bold;'>Patient is unlikely to benefit from pharmacogenetic testing based on clinical criteria. Testing is not routinely recommended.</span>";
+        interpretation = "<span style='color: red; font-weight: bold;'>Pacient(ka) pravděpodobně nebude profitovat z farmakogenetického testování. Rutinní testování není doporučeno.</span>";
     }
 
     document.getElementById("interpretation").innerHTML = interpretation;
