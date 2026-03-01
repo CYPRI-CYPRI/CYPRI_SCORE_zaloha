@@ -103,6 +103,24 @@ fieldset > label:active {
 fieldset input:checked + * {
     font-weight: 600;
 }
+    /* === TDM fieldset: víc prostoru mezi klikací řádek a textový box === */
+fieldset > label {
+    display: block;          /* ať label nezůstane "na stejné linii" s details */
+    margin-top: 14px;
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+fieldset > label:hover {
+    background-color: rgba(255,255,255,0.20);
+}
+
+fieldset .details {
+    margin-top: 0;           /* spacing řeší label margin-bottom */
+    margin-bottom: 16px;     /* mezera před dalším labelem */
+    padding: 14px;           /* trochu víc "vzduchu" */
+}
 </style>
 </head>
 <body>
