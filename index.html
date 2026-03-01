@@ -78,6 +78,31 @@ input[type="radio"]{
     margin-top: 3px;
     cursor: pointer;
 }
+    /* === Interaktivní hlavička kritéria === */
+.criterion-box > label,
+fieldset > label {
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover efekt */
+.criterion-box > label:hover,
+fieldset > label:hover {
+    background-color: rgba(255,255,255,0.35);
+}
+
+/* Klik efekt */
+.criterion-box > label:active,
+fieldset > label:active {
+    transform: scale(0.99);
+}
+
+/* Zvýraznění vybrané položky */
+.criterion-box input:checked + *,
+fieldset input:checked + * {
+    font-weight: 600;
+}
 </style>
 </head>
 <body>
